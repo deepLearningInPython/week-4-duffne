@@ -177,7 +177,7 @@ assert all(id_to_token[token_to_id[key]]==key for key in token_to_id) and all(to
 def make_vocabulary_map(documents: list) -> tuple:
     vocab = set()
     for document in documents:
-        vocab = tokenize(document)
+        vocab.update(tokenize(document))
     
     token2int = {token: idx for idx, token in enumerate(vocab)}
     int2token = {idx: token for token, idx in token2int.items()}
@@ -203,7 +203,7 @@ def tokenize_and_encode(documents: list) -> tuple:
     t2i, i2t = make_vocabulary_map(documents)
     enc = []
     for document in documents:
-        enc.append([t2i[token] for token in tokenize(document)])
+        enc.append([t2i[token] for token in tokenize(document) if token in t2i])
     return enc, t2i, i2t
 
 # Test:
