@@ -109,7 +109,7 @@ def token_counts(string: str, k: int = 1) -> dict:
     word_frequencies = {word: tokens.count(word) for word in set(tokens)}
     
     # Filter tokens with frequency greater than k
-    token_freq = {word: count for word, count in word_frequencies.items() if count > k}
+    token_freq = {word: count for word, count in word_frequencies.items() if count >= k}
     
     return token_freq
 
